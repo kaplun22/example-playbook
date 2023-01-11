@@ -1,0 +1,31 @@
+- name: install mongoDB
+  apt: name=mongodb state=present
+ 
+
+- name: copy config file
+  copy:
+    src: files/mongodb.conf
+    dest: /etc/mongodb.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart mongodb
+
+- name: create /etc/security/limits.d/mongodb.conf
+  copy:
+    src: files/security-mongodb.conf
+    dest: /etc/security/limits.d/mongodb.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart mongodb
+
+
+- name: Ensure mongodb is running and and enabled
+  systemd:
+    name: mongodb
+    enabled: yes
+    state: started
+

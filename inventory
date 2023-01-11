@@ -1,0 +1,9 @@
+[webservers]
+webserver1 ansible_host=xx.xx.xx.xx
+webserver2 ansible_host=xx.xx.xx.xx
+
+[loadbalansers]
+haproxy ansible_host=xx.xx.xx.xx
+
+[db]
+mongodb ansible_host=xx.xx.xx.xx
